@@ -13,11 +13,18 @@ namespace Multas.Models
         {
             ListaDeMultas = new HashSet<Multas>();
         }
-
+        //tudo o que tem [] são complementos
         [Key]
         //descrição dos atributos
         public int ID { get; set; }
+
+        //não esquecer o rebuild
+        [Required(ErrorMessage = "Tens de preencher o campo {0} , burro.")]
+        [RegularExpression("[A-ZÍÉÂÁ][a-z]+[a-záéíóúàèìòùâêîôûäëïöüãõç]+ [A-ZÍÉÂÁ][a-z]+[a-záéíóúàèìòùâêîôûäëïöüãõç]+(( | '|-| dos | da | de | e | d')[A-ZÍÉÂÁ][a-z] +[a-záéíóúàèìòùâêîôûäëïöüãõç]+[A-ZÍÉÂÁ][a-z]+[a-záéíóúàèìòùâêîôûäëïöüãõç]+){1, 3}", ErrorMessage = "O {0} apenas pode conter letras e espaços em branco. Cada palavra começa em Maiúscula seguida de minúscula")]
+
         public string Nome { get; set; }
+        [RegularExpression("[A-ZÍÉÂÁ]*[a-záéíóúàèìòùâêîôûäëïöüãõç ]*", ErrorMessage = "A {0} não é válida")]
+        [Required(ErrorMessage = "Tens de preencher o campo {0} , burro.")]
         public string Esquadra { get; set; }
         public string Fotografia { get; set; }
         //referência às multas que um agente "emite"
